@@ -178,7 +178,7 @@ class GamryParser:
         pos = 0
         with open(file=self.fname, mode="r", encoding="utf8", errors="ignore") as f:
             cur_line = f.readline().split("\t")
-            while not re.search(r"(^|Z|VFP|EFM)CURVE", cur_line[0]):
+            while not re.search(r"(^|Z|VFP|EFM|CAPACITY)CURVE", cur_line[0]):
                 if f.tell() == pos:
                     break
 
@@ -247,7 +247,7 @@ class GamryParser:
 
         units = fid.readline().strip().split("\t")
         cur_line = fid.readline().strip()
-        while not re.search(r"(CURVE|EXPERIMENTABORTED)", cur_line):
+        while not re.search(r"(CURVE|EXPERIMENTABORTED|STOPREASON|STARTTIMEOFFSET)", cur_line):
             curve += cur_line + "\n"
             pos = fid.tell()
             cur_line = fid.readline().strip()
